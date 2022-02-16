@@ -1,12 +1,15 @@
 import "./App.css";
-import Test from "./components/Test";
+import { Switch, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import AddCard from "./pages/AddCard";
 
 function App() {
   return (
     <div className="App">
-      <h3> Emma testar tjollahopp Oboy är gott!!</h3>
-      <h4>Och nu testar Lina!</h4>
-      <Test />
+      <Switch>
+        <Route exact path="/" render={(props) => <Home {...props} />} />
+        <Route path="/addcard" render={(props) => <AddCard {...props} />} />
+      </Switch>
     </div>
   );
 }
