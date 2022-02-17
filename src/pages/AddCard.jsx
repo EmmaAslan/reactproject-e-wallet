@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
+import AddNewCard from "../components/AddNewCard";
 
 const AddCard = () => {
   return (
     <div>
-      <p>Add card here</p>
+      <AddNewCard />
       <Link to="/">
         <button>Return to homepage</button>
       </Link>
