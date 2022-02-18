@@ -12,7 +12,7 @@ const walletSlice = createSlice({
         validYear: 27,
         cvc: "123",
         id: 1,
-        ifActive: true
+        ifActive: true,
       },
     ],
     latestId: 1,
