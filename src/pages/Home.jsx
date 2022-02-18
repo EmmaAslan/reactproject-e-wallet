@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Card from "../components/Card";
+import Wallet from "../components/Wallet";
 
 const Home = () => {
   return (
@@ -7,8 +7,8 @@ const Home = () => {
       <Link to={{ pathname: "/addcard" }}>
         <button>Add new card</button>
       </Link>
-
-      <Card />
+      <h2>Active card</h2>
+      <Wallet />
     </div>
   );
 };
