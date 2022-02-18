@@ -41,7 +41,7 @@
 .cardNumbers { 
   grid-area: 4 / 1 / 5 / 6; 
   width: 100%;
-  letter-spacing: 8px;
+  letter-spacing: 6px;
   font-size: 23px;
   
 }

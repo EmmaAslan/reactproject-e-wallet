@@ -5,12 +5,14 @@ const walletSlice = createSlice({
   initialState: {
     listOfCards: [
       {
-        cardNumber: 1234123412341234,
-        name: "name lastname",
+        cardNumber: "1231 1231 1231 1231",
+        firstName: "React",
+        lastName: "von Projektsson",
         validMonth: 11,
-        validYear: 11,
-        cvc: 123,
+        validYear: 27,
+        cvc: "123",
         id: 1,
+        ifActive: true
       },
     ],
     latestId: 1,
