@@ -51,13 +51,15 @@ const Wallet = () => {
                 />
               </div>
               <div className="cardNumbers">
-                <p>{card.cardnumber}</p>
+                <p>{card.cardNumber}</p>
               </div>
               <div className="name">
                 <p>{card.name}</p>
               </div>
               <div className="date">
-                <p>{card.valid}</p>
+                <p>
+                  {card.validMonth}/{card.validYear}
+                </p>
               </div>
             </div>
           );

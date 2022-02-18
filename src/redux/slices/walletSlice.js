@@ -7,7 +7,8 @@ const walletSlice = createSlice({
       {
         cardNumber: 1234123412341234,
         name: "name lastname",
-        valid: 11 / 11,
+        validMonth: 11,
+        validYear: 11,
         cvc: 123,
         id: 1,
       },
