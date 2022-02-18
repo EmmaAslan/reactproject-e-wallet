@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 const AddNewCard = () => {
   const dispatch = useDispatch();
   const { latestId } = useSelector((state) => state.walletList);
+  const { listOfCards } = useSelector((state) => state.walletList);
   const [cardNumber, setCardNumber] = useState("xxxx xxxx xxxx xxxx");
   const [firstName, setFirstName] = useState("React");
   const [lastName, setLastName] = useState("von Projektsson");
@@ -23,18 +24,20 @@ const AddNewCard = () => {
     let validMonth = document.querySelector("#validMonth").value;
     let validYear = document.querySelector("#validYear").value;
     let cvc = document.querySelector("#cvc").value;
-    dispatch(
-      addCard({
-        cardNumber: cardNumber,
-        firstName: firstName,
-        lastName: lastName,
-        validMonth: validMonth,
-        validYear: validYear,
-        cvc: cvc,
-        id: latestId + 1,
-        ifActive: false
-      })
-    );
+    if (listOfCards.length <= 3)
+      dispatch(
+        addCard({
+          cardNumber: cardNumber,
+          firstName: firstName,
+          lastName: lastName,
+          validMonth: validMonth,
+          validYear: validYear,
+          cvc: cvc,
+          id: latestId + 1,
+          ifActive: false,
+        })
+      );
+    else alert("You already have maximum of 4 cards");
   };
 
   let changeCardNumber = (e) => {
@@ -74,7 +77,9 @@ const AddNewCard = () => {
           <p>{cardNumber}</p>
         </div>
         <div className="name">
-          <p>{firstName} {lastName}</p>
+          <p>
+            {firstName} {lastName}
+          </p>
         </div>
         <div className="date">
           <p>
@@ -89,8 +94,8 @@ const AddNewCard = () => {
             name="cardNumber"
             placeholder="1234.."
             id="cardNumber"
-          pattern="[\d|]{16,16}" 
-          /*fixa pattern - max 16 siffror och grupperade i 4 */
+            pattern="[\d|]{16,16}"
+            /*fixa pattern - max 16 siffror och grupperade i 4 */
             onChange={changeCardNumber}
             //fixa max-antal och så xxx står kvar?
           />
@@ -119,7 +124,6 @@ const AddNewCard = () => {
             id="validMonth"
             onChange={changeValidMonth}
           />
-
           {/*fixa max antal siffror (2) + inte tidigare år  */}
           <input
             type="tel"
@@ -129,10 +133,13 @@ const AddNewCard = () => {
             placeholder="Year"
             onChange={changeValidYear}
           />
-
           {/*fixa max antal siffror (3)*/}
-          <input type="text" placeholder="CVC" id="cvc" onChange={changeCvc} />{" "}
-          
+          <input
+            type="text"
+            placeholder="CVC"
+            id="cvc"
+            onChange={changeCvc}
+          />{" "}
           <select name="vendor" id="">
             <option value="Visa">Visa</option>
             <option value="Mastercard">Mastercard</option>
@@ -141,9 +148,8 @@ const AddNewCard = () => {
           </select>
         </div>
         <Link to="/">
-        <button onClick={handleAddCard}>Add card</button>
-         </Link>
-        
+          <button onClick={handleAddCard}>Add card</button>
+        </Link>
       </div>
     </div>
   );
