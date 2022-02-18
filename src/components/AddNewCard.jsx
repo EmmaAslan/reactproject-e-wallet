@@ -10,19 +10,22 @@ const AddNewCard = () => {
   const { latestId } = useSelector((state) => state.walletList);
   const [cardNumber, setCardNumber] = useState("xxxx xxxx xxxx xxxx");
   const [name, setName] = useState("React von Projektsson");
-  const [valid, setValid] = useState("09/24");
+  const [validMonth, setValidMonth] = useState("09");
+  const [validYear, setValidYear] = useState("12");
   const [cvc, setCvc] = useState("");
 
   const handleAddCard = () => {
     let cardNumber = document.querySelector("#cardNumber").value;
     let name = document.querySelector("#name").value;
-    let valid = document.querySelector("#valid").value;
+    let validMonth = document.querySelector("#validMonth").value;
+    let validYear = document.querySelector("#validYear").value;
     let cvc = document.querySelector("#cvc").value;
     dispatch(
       addCard({
         cardNumber: cardNumber,
         name: name,
-        valid: valid,
+        validMonth: validMonth,
+        validYear: validYear,
         cvc: cvc,
         id: latestId + 1,
       })
@@ -35,8 +38,11 @@ const AddNewCard = () => {
   let changeName = (e) => {
     setName(e.target.value);
   };
-  let changeValid = (e) => {
-    setValid(e.target.value);
+  let changeValidMonth = (e) => {
+    setValidMonth(e.target.value);
+  };
+  let changeValidYear = (e) => {
+    setValidYear(e.target.value);
   };
   let changeCvc = (e) => {
     setCvc(e.target.value);
@@ -66,7 +72,9 @@ const AddNewCard = () => {
           <p>{name}</p>
         </div>
         <div className="date">
-          <p>{valid}</p>
+          <p>
+            {validMonth}/{validYear}
+          </p>
         </div>
       </div>
       <div>
@@ -91,13 +99,25 @@ const AddNewCard = () => {
         <div>
           <input
             type="tel"
-            placeholder="XX/XX"
-            pattern="\d\d/\d\d"
-            id="valid"
-            onChange={changeValid}
+            placeholder="XX"
+            id="validMonth"
+            onChange={changeValidMonth}
+          />
+          <input
+            type="tel"
+            name="validYear"
+            id="validYear"
+            placeholder="XX"
+            onChange={changeValidYear}
           />
           <input type="text" placeholder="CVC" id="cvc" onChange={changeCvc} />{" "}
           {/*fixa max antal siffror */}
+          <select name="vendor" id="">
+            <option value="Visa">Visa</option>
+            <option value="Mastercard">Mastercard</option>
+            <option value="ica">Ica</option>
+            <option value="Ullared">Ullared</option>
+          </select>
         </div>
         <button onClick={handleAddCard}>Add card</button>
       </div>
