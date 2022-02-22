@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 const AddNewCard = () => {
   const dispatch = useDispatch();
   const { latestId } = useSelector((state) => state.walletList);
-  const { listOfCards } = useSelector((state) => state.walletList);
+  const { notActiveCards } = useSelector((state) => state.walletList);
   const [cardNumber, setCardNumber] = useState("xxxx xxxx xxxx xxxx");
   const [firstName, setFirstName] = useState("React");
   const [lastName, setLastName] = useState("von Projektsson");
@@ -24,7 +24,7 @@ const AddNewCard = () => {
     let validMonth = document.querySelector("#validMonth").value;
     let validYear = document.querySelector("#validYear").value;
     let cvc = document.querySelector("#cvc").value;
-    if (listOfCards.length <= 3)
+    if (notActiveCards.length <= 2)
       dispatch(
         addCard({
           cardNumber: cardNumber,
