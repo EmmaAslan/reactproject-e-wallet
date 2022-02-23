@@ -8,14 +8,15 @@ import { Link } from "react-router-dom";
 
 const AddNewCard = () => {
   const dispatch = useDispatch();
-  const { latestId } = useSelector((state) => state.walletList);
-  const { notActiveCards } = useSelector((state) => state.walletList);
+
+  const { listOfCards } = useSelector((state) => state.walletList);
   const [cardNumber, setCardNumber] = useState("xxxx xxxx xxxx xxxx");
   const [firstName, setFirstName] = useState("React");
   const [lastName, setLastName] = useState("von Projektsson");
   const [validMonth, setValidMonth] = useState("xx");
   const [validYear, setValidYear] = useState("xx");
   const [cvc, setCvc] = useState("");
+  const [vendor, setVendor] = useState("");
 
   const handleAddCard = () => {
     let cardNumber = document.querySelector("#cardNumber").value;
@@ -24,7 +25,8 @@ const AddNewCard = () => {
     let validMonth = document.querySelector("#validMonth").value;
     let validYear = document.querySelector("#validYear").value;
     let cvc = document.querySelector("#cvc").value;
-    if (notActiveCards.length <= 2)
+
+    if (listOfCards.length <= 3)
       dispatch(
         addCard({
           cardNumber: cardNumber,
@@ -33,8 +35,8 @@ const AddNewCard = () => {
           validMonth: validMonth,
           validYear: validYear,
           cvc: cvc,
-          id: latestId + 1,
-          ifActive: false,
+          id: Date.now(),
+          vendor: vendor,
         })
       );
     else alert("You already have maximum of 4 cards");
@@ -58,6 +60,24 @@ const AddNewCard = () => {
   let changeCvc = (e) => {
     setCvc(e.target.value);
   };
+  let getVendor = () => {
+    let selected = document.getElementById("vendor");
+    let value = selected.value;
+    setVendor(value);
+  };
+
+  //funktion för att byta endast logo på kort
+
+  let cardvendor = "";
+
+  if (vendor === "Visa") {
+    cardvendor = visaLogo;
+  } else if (vendor === "Swedbank") {
+    cardvendor = swedbankLogo;
+  } else if (vendor === "Ica") {
+    cardvendor = icaLogo;
+  }
+  let source = cardvendor;
 
   return (
     <div>
@@ -65,7 +85,7 @@ const AddNewCard = () => {
       <div className="card">
         <div className="whoKnows"></div>
         <div className="logo">
-          <img src={visaLogo} />
+          <img src={source} />
         </div>
         <div className="chip">
           <img
@@ -140,11 +160,11 @@ const AddNewCard = () => {
             id="cvc"
             onChange={changeCvc}
           />{" "}
-          <select name="vendor" id="">
+          <select id="vendor" onChange={getVendor}>
+            <option value="">Choose vendor</option>
             <option value="Visa">Visa</option>
-            <option value="Mastercard">Mastercard</option>
-            <option value="ica">Ica</option>
-            <option value="Ullared">Ullared</option>
+            <option value="Swedbank">Swedbank</option>
+            <option value="Ica">Ica</option>
           </select>
         </div>
         <Link to="/">
