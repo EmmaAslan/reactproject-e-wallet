@@ -11,8 +11,8 @@ const walletSlice = createSlice({
         validMonth: 11,
         validYear: 27,
         cvc: "123",
-        id: 1,
-        ifActive: true,
+        vendor: "LElogo",
+        id: 1
       },
     ],
     notActiveCards: [],
@@ -25,12 +25,24 @@ const walletSlice = createSlice({
       state.latestId += 1;
     },
     changeActive: (state, action) => {
-      const change = state.activeCard.pop(action.payload);
-      state.notActiveCards.push(change);
-      const change2 = state.notActiveCards.shift(
-        (card) => card.id === action.payload
-      );
-      state.activeCard.push(change2);
+      const active = state.activeCard.pop(action.payload);
+      state.notActiveCards.push(active);
+
+     
+     // const change2 = state.notActiveCards.filter((card) => [...state, card.id = action.payload])
+      //const change2 = state.notActiveCards.shift((card) => card.id !== action.payload)
+      // const change2 = state.notActiveCards.shift(
+      //   (card) => card.id === action.payload
+      // );
+      const notActive = state.notActiveCards = action.payload;
+      state.activeCard.push(notActive);
+
+
+      /*let notActive = state.notActiveCards.filter((card) => card.id !== payload.id);
+      notActive.splice(0,0,payload);
+      return {...state, notActiveCards: notActive}*/
+     
+
     },
     /*changeActive: (state, action) => {
       state.notActive = [...state.listOfCards, action.payload];

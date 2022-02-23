@@ -1,6 +1,7 @@
 import swedbankLogo from "../logos/swedbanklogo.png";
 import icaLogo from "../logos/icabankenlogo.png";
 import visaLogo from "../logos/visalogo.png";
+import LElogo from "../logos/LElogo.png";
 import { useDispatch, useSelector } from "react-redux";
 import { addCard } from "../redux/slices/walletSlice";
 import { useState } from "react";
@@ -16,6 +17,8 @@ const AddNewCard = () => {
   const [validMonth, setValidMonth] = useState("xx");
   const [validYear, setValidYear] = useState("xx");
   const [cvc, setCvc] = useState("");
+  const [vendor, setVendor] = useState("");
+  const [value, setValue] = useState("default");
 
   const handleAddCard = () => {
     let cardNumber = document.querySelector("#cardNumber").value;
@@ -24,6 +27,7 @@ const AddNewCard = () => {
     let validMonth = document.querySelector("#validMonth").value;
     let validYear = document.querySelector("#validYear").value;
     let cvc = document.querySelector("#cvc").value;
+    let vendor = document.querySelector("#vendor").value;
     if (notActiveCards.length <= 2)
       dispatch(
         addCard({
@@ -33,12 +37,12 @@ const AddNewCard = () => {
           validMonth: validMonth,
           validYear: validYear,
           cvc: cvc,
-          id: latestId + 1,
-          ifActive: false,
+          vendor: vendor,
+          id: latestId + 1
         })
       );
     else alert("You already have maximum of 4 cards");
-  };
+  };   
 
   let changeCardNumber = (e) => {
     setCardNumber(e.target.value);
@@ -59,13 +63,17 @@ const AddNewCard = () => {
     setCvc(e.target.value);
   };
 
+  let changeVendor = (e) => {
+    setVendor(e.target.value);
+  }
+  
   return (
     <div>
       <h2>Add a new bank card</h2>
       <div className="card">
         <div className="whoKnows"></div>
-        <div className="logo">
-          <img src={visaLogo} />
+        <div className="logo" >
+          {vendor == "Visa" ? <img src={visaLogo} alt="" /> : vendor == "Swedbank" ? <img src={swedbankLogo} alt="" /> : vendor == "LE Bank" ? <img src={LElogo} alt="" /> : vendor == "Ica" ? <img src={icaLogo} alt="" /> : null}
         </div>
         <div className="chip">
           <img
@@ -90,14 +98,26 @@ const AddNewCard = () => {
       <div>
         <div>
           <input
-            type="tel"
+            type="text"
             name="cardNumber"
-            placeholder="1234.."
+            placeholder="Card number"
+            pattern="\d*" 
+            maxLength="16"
             id="cardNumber"
-            pattern="[\d|]{16,16}"
-            /*fixa pattern - max 16 siffror och grupperade i 4 */
+            //pattern="[0-9]{16}"
+            //pattern="/^[\d+\s]*$/"
+            //maxLength="16"
+            //minLength="16"
+            /*fixa pattern - grupperade i 4 */
             onChange={changeCardNumber}
             //fixa max-antal och så xxx står kvar?
+          />
+          <input
+            type="text"
+            placeholder="CVC"
+            id="cvc"
+            maxLength="3"
+            onChange={changeCvc}
           />
         </div>
         <div>
@@ -107,8 +127,6 @@ const AddNewCard = () => {
             id="firstName"
             onChange={changeFirstName}
           />
-        </div>
-        <div>
           <input
             type="text"
             placeholder="Lastname"
@@ -133,20 +151,20 @@ const AddNewCard = () => {
             placeholder="Year"
             onChange={changeValidYear}
           />
-          {/*fixa max antal siffror (3)*/}
-          <input
-            type="text"
-            placeholder="CVC"
-            id="cvc"
-            onChange={changeCvc}
-          />{" "}
-          <select name="vendor" id="">
+          </div>
+          <div>
+          <select name="vendor" id="vendor" defaultValue={value} onChange={changeVendor}>
+          {/* event => setValue(event.target.value) */}
+            {/* onChange={handleSelect} */}
+            <option value="default" disabled hidden>Choose vendor</option>
             <option value="Visa">Visa</option>
-            <option value="Mastercard">Mastercard</option>
-            <option value="ica">Ica</option>
-            <option value="Ullared">Ullared</option>
+            <option value="LE Bank">LE Bank</option>
+            <option value="Swedbank">Swedbank</option>
+            <option value="Ica">Ica</option>
           </select>
-        </div>
+          <p>{value}</p>
+          
+          </div>
         <Link to="/">
           <button onClick={handleAddCard}>Add card</button>
         </Link>

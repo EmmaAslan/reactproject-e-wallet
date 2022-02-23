@@ -7,14 +7,26 @@ import { useState } from "react";
 
 const Wallet = () => {
   const dispatch = useDispatch();
-  const activeCard = useSelector((state) => state.walletList.activeCard);
-  const notActiveCards = useSelector(
-    (state) => state.walletList.notActiveCards
-  );
+  const {activeCard} = useSelector((state) => state.walletList);
+  const {notActiveCards} = useSelector((state) => state.walletList);
+  const {latestId} = useSelector((state) => state.walletList);
   //const { isActive } = useSelector((state) => state.walletSlice.isActive);
 
   let onChangeActive = (id) => {
-    dispatch(changeActive(id));
+    //const cardId = {latestId};
+    
+    //console.log(cardId)
+    //dispatch(changeActive(id));
+    
+      notActiveCards.map((card) => {
+        if (card.id === id){
+          console.log(card);
+          dispatch(changeActive(id));
+        }
+      // console.log(card.id);
+       
+      }) 
+
   };
 
   /*const testOnClick = () => {
@@ -37,7 +49,7 @@ const Wallet = () => {
             <div key={i} className="card">
               <div className="whoKnows"></div>
               <div className="logo">
-                <img src={visaLogo} />
+                <img src={card.vendor} />
               </div>
               <div className="chip">
                 <img
@@ -75,7 +87,7 @@ const Wallet = () => {
             >
               <div className="whoKnows"></div>
               <div className="logo">
-                <img src={visaLogo} />
+              {card.vendor} {/* <img src= /> */}
               </div>
               <div className="chip">
                 <img
@@ -101,7 +113,8 @@ const Wallet = () => {
         })}
       </div>
     </div>
-    /*<div>
+    /*
+    <div>
       {listOfCards.map((card, i) => {
         if (card.ifActive === true) {
           return (
