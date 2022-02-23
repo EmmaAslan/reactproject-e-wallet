@@ -9,8 +9,8 @@ import { Link } from "react-router-dom";
 
 const AddNewCard = () => {
   const dispatch = useDispatch();
-  const { latestId } = useSelector((state) => state.walletList);
-  const { notActiveCards } = useSelector((state) => state.walletList);
+
+  const { listOfCards } = useSelector((state) => state.walletList);
   const [cardNumber, setCardNumber] = useState("xxxx xxxx xxxx xxxx");
   const [firstName, setFirstName] = useState("React");
   const [lastName, setLastName] = useState("von Projektsson");
@@ -28,7 +28,7 @@ const AddNewCard = () => {
     let validYear = document.querySelector("#validYear").value;
     let cvc = document.querySelector("#cvc").value;
     let vendor = document.querySelector("#vendor").value;
-    if (notActiveCards.length <= 2)
+    if (listOfCards.length <= 3)
       dispatch(
         addCard({
           cardNumber: cardNumber,
@@ -37,8 +37,8 @@ const AddNewCard = () => {
           validMonth: validMonth,
           validYear: validYear,
           cvc: cvc,
+          id: Date.now(),
           vendor: vendor,
-          id: latestId + 1
         })
       );
     else alert("You already have maximum of 4 cards");
@@ -62,6 +62,24 @@ const AddNewCard = () => {
   let changeCvc = (e) => {
     setCvc(e.target.value);
   };
+  let getVendor = () => {
+    let selected = document.getElementById("vendor");
+    let value = selected.value;
+    setVendor(value);
+  };
+
+  //funktion för att byta endast logo på kort
+
+  let cardvendor = "";
+
+  if (vendor === "Visa") {
+    cardvendor = visaLogo;
+  } else if (vendor === "Swedbank") {
+    cardvendor = swedbankLogo;
+  } else if (vendor === "Ica") {
+    cardvendor = icaLogo;
+  }
+  let source = cardvendor;
 
   let changeVendor = (e) => {
     setVendor(e.target.value);
