@@ -16,7 +16,7 @@ const Wallet = () => {
             <div key={i} className="card">
               <div className="whoKnows"></div>
               <div className="logo">
-                <img src={visaLogo} />
+                <img src={card.vendor} />
               </div>
               <div className="chip">
                 <img
