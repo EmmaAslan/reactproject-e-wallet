@@ -3,19 +3,13 @@
 }
 
 
-/* CSS för kort */
+/* CSS för kort - default*/
+
 .card {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(5, 1fr);
-  /* background-image: linear-gradient(rgb(51, 180, 255), rgb(0, 140, 255)); */
-
-  /* LE LOGO */
   background-image: linear-gradient(rgb(92, 144, 212), rgb(76, 101, 146));
-
-  /* VISA LOGO */
-  /* background-image: linear-gradient(rgb(255, 51, 112), rgb(183, 0, 255)); */
-
   margin: auto;
   width: 360px;
   height: 190px;
@@ -24,6 +18,60 @@
   text-shadow: #615f56 1px 1px 2px;
   }
   
+  /* VISA LOGO */
+.cardVisa {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  background-image: linear-gradient(rgb(255, 51, 112), rgb(183, 0, 255)); 
+  margin: auto;
+  width: 360px;
+  height: 190px;
+  border-radius: 10px;
+  color: #bbb959;
+  text-shadow: #615f56 1px 1px 2px;
+}
+
+ /* LE LOGO */
+.cardLE {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  background-image: linear-gradient(rgb(109, 101, 226), rgb(64, 60, 121));
+  margin: auto;
+  width: 360px;
+  height: 190px;
+  border-radius: 10px;
+  color: #bbb959;
+  text-shadow: #615f56 1px 1px 2px;
+}
+
+.cardSwedbank {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  background-image: linear-gradient(rgb(255, 209, 123), rgb(255, 167, 52));
+  margin: auto;
+  width: 360px;
+  height: 190px;
+  border-radius: 10px;
+  color: #7c4512;
+  text-shadow: #615f56 1px 1px 2px;
+}
+
+.cardIca {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  background-image: linear-gradient(rgb(247, 144, 144), rgb(167, 82, 82));
+  margin: auto;
+  width: 360px;
+  height: 190px;
+  border-radius: 10px;
+  color: #bbb959;
+  text-shadow: #615f56 1px 1px 2px;
+}
+
 .chip { 
   grid-area: 3 / 1 / 4 / 3; 
 }
