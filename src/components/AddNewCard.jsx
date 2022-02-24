@@ -3,20 +3,23 @@ import { addCard } from "../redux/slices/walletSlice";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import SingleCard from "./SingleCard";
+import NumberFormat from "react-number-format";
 
 const AddNewCard = () => {
   const dispatch = useDispatch();
 
   const { listOfCards } = useSelector((state) => state.walletList);
   const [cardNumber, setCardNumber] = useState("xxxx xxxx xxxx xxxx");
-  const [firstName, setFirstName] = useState("React");
-  const [lastName, setLastName] = useState("von Projektsson");
+  const [firstName, setFirstName] = useState("Name");
+  const [lastName, setLastName] = useState("Lastname");
   const [validMonth, setValidMonth] = useState("xx");
   const [validYear, setValidYear] = useState("xx");
-  const [cvc, setCvc] = useState("");
+  const [cvc, setCvc] = useState("xxx");
   const [vendor, setVendor] = useState("");
   const [value, setValue] = useState("default");
 
+
+  //
   const handleAddCard = () => {
     if (listOfCards.length <= 3)
       dispatch(
@@ -35,7 +38,12 @@ const AddNewCard = () => {
   };   
 
   let changeCardNumber = (e) => {
+    
     setCardNumber(e.target.value);
+    /*if(cardNumber < 16){
+      setCardNumber(e.target.value);
+    }
+    else alert ("Must be 16 numbers")*/
   };
   let changeFirstName = (e) => {
     setFirstName(e.target.value);
@@ -56,6 +64,8 @@ const AddNewCard = () => {
   let changeVendor = (e) => {
     setVendor(e.target.value);
   } 
+
+  //var NumberFormat = require('react-number-format');
   
   return (
     <div>
@@ -72,39 +82,36 @@ const AddNewCard = () => {
      
       <div>
         <div>
-          <input
-            type="text"
-            name="cardNumber"
-            placeholder="Card number"
-            pattern="\d*" 
-            maxLength="16"
-            id="cardNumber"
-            //pattern="[0-9]{16}"
-            //pattern="/^[\d+\s]*$/"
-            //maxLength="16"
-            //minLength="16"
-            /*fixa pattern - grupperade i 4 */
-            onChange={changeCardNumber}
-            //fixa max-antal och så xxx står kvar?
+         
+          <NumberFormat 
+          format="#### #### #### ####"
+          name="cardNumber"
+          id="cardNumber"
+          placeholder="Card number"
+          onChange={changeCardNumber}
+          allowEmptyFormatting={false}
           />
-          <input
-            type="text"
-            placeholder="CVC"
-            id="cvc"
-            maxLength="3"
-            onChange={changeCvc}
-          />
+
+          <NumberFormat 
+          format="###"
+          name="cvc"
+          id="cvc"
+          placeholder="CVC"
+          onChange={changeCvc}
+          />  
+        
         </div>
+
         <div>
           <input
             type="text"
-            placeholder="Firstname"
+            placeholder="First Name"
             id="firstName"
             onChange={changeFirstName}
           />
           <input
             type="text"
-            placeholder="Lastname"
+            placeholder="Last Name"
             id="lastName"
             onChange={changeLastName}
           />
@@ -134,9 +141,7 @@ const AddNewCard = () => {
             <option value="LE Bank">LE Bank</option>
             <option value="Swedbank">Swedbank</option>
             <option value="Ica">Ica</option>
-          </select>
-          <p>{value}</p>
-          
+          </select>          
           </div>
         <Link to="/">
           <button onClick={handleAddCard}>Add card</button>
