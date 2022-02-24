@@ -6,12 +6,12 @@ const walletSlice = createSlice({
     listOfCards: [
       {
         id: Date.now(),
-        cardNumber: "1231 1231 1231 1231",
-        firstName: "Reacty",
+        cardNumber: "4578 7854 4522 1336",
+        firstName: "React",
         lastName: "von Projektsson",
-        validMonth: 11,
-        validYear: 27,
-        cvc: "123",
+        validMonth: "07",
+        validYear: "27",
+        cvc: "412",
         vendor: "LE Bank",
       },
     ],
