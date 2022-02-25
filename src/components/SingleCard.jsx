@@ -9,15 +9,15 @@ const SingleCard = (props) => {
 return (
     <div>
         <div className={props.vendor === "Visa" ? "cardVisa" 
-        : props.vendor === "Swedbank" ? "cardSwedbank" 
-        : props.vendor === "LE Bank" ? "cardLE" 
+        : props.vendor === "LE Bank" ? "cardLE"
+        : props.vendor === "Swedbank" ? "cardSwedbank"
         : props.vendor === "Ica" ? "cardIca"
         : "card"}>
               <div className="whoKnows"></div>
               <div className="logo" >
                 {props.vendor === "Visa" ? <img src={visaLogo} alt="" /> 
-                : props.vendor === "Swedbank" ? <img src={swedbankLogo} alt="" /> 
                 : props.vendor === "LE Bank" ? <img src={LElogo} alt="" /> 
+                : props.vendor === "Swedbank" ? <img src={swedbankLogo} alt="" /> 
                 : props.vendor === "Ica" ? <img src={icaLogo} alt="" /> 
                 : null}
              </div>

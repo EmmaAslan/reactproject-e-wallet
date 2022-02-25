@@ -18,8 +18,6 @@ const AddNewCard = () => {
   const [vendor, setVendor] = useState("");
   const [value, setValue] = useState("default");
 
-
-  //
   const handleAddCard = () => {
     if (listOfCards.length <= 3)
       dispatch(
@@ -80,7 +78,7 @@ const AddNewCard = () => {
           vendor={vendor}
       />
      
-      <div>
+      <form>
         <div>
          
           <NumberFormat 
@@ -89,7 +87,8 @@ const AddNewCard = () => {
           id="cardNumber"
           placeholder="Card number"
           onChange={changeCardNumber}
-          allowEmptyFormatting={false}
+          //allowEmptyFormatting={false}
+          required
           />
 
           <NumberFormat 
@@ -146,7 +145,7 @@ const AddNewCard = () => {
         <Link to="/">
           <button onClick={handleAddCard}>Add card</button>
         </Link>
-      </div>
+      </form>
     </div>
   );
 };

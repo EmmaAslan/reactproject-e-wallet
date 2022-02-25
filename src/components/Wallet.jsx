@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { changeActive, deleteCard } from "../redux/slices/walletSlice";
 import SingleCard from "./SingleCard"
+import {BsTrashFill} from "react-icons/bs"
 
 const Wallet = () => {
   const dispatch = useDispatch();
@@ -29,7 +30,7 @@ const Wallet = () => {
       <div>
         {listOfCards.slice(1, 4).map((card, i) => {
           return (
-            <div key={i}>
+            <div key={i} className="inactiveCards">
               <div onClick={() => dispatch(changeActive(card))}>
                 <SingleCard
                   cardNumber={card.cardNumber}
@@ -41,8 +42,8 @@ const Wallet = () => {
                   vendor={card.vendor}
               />
                 </div>
-                <button onClick={() => dispatch(deleteCard(card.id))}>
-                  Delete card
+                <button className="deleteButton" onClick={() => dispatch(deleteCard(card.id))}>
+                  <BsTrashFill/>
                 </button>
             </div>
           );
