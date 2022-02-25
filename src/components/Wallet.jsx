@@ -1,27 +1,41 @@
 import { useSelector, useDispatch } from "react-redux";
 import { changeActive, deleteCard } from "../redux/slices/walletSlice";
-import SingleCard from "./SingleCard"
+import SingleCard from "./SingleCard";
+import { getRandomUser } from "../redux/slices/walletSlice";
 
 const Wallet = () => {
   const dispatch = useDispatch();
-  const {listOfCards} = useSelector((state) => state.walletList);
-
+  const { listOfCards, randomUser } = useSelector((state) => state.walletList);
+  console.log(listOfCards);
+  window.addEventListener("beforeunload", function (e) {
+    e.preventDefault();
+    e.returnValue = "";
+  });
   return (
     <div>
+      <h1>{randomUser.firstName}</h1>
+      {/*<button 
+        onClick={() => {
+          //dispatch(getRandomUser(listOfCards));
+        }}
+      >
+        click
+      </button>*/}
+
       <div>
         {listOfCards.slice(0, 1).map((card, i) => {
           return (
-            <div key={i} >
+            <div key={i}>
               <SingleCard
                 cardNumber={card.cardNumber}
-                firstName= {card.firstName}
-                lastName={card.lastName}
+                //firstName={card.firstName}
+                //lastName={card.lastName}
                 validMonth={card.validMonth}
                 validYear={card.validYear}
-                cvc={card.cvc}      
+                cvc={card.cvc}
                 vendor={card.vendor}
               />
-           </div>
+            </div>
           );
         })}
       </div>
@@ -33,17 +47,17 @@ const Wallet = () => {
               <div onClick={() => dispatch(changeActive(card))}>
                 <SingleCard
                   cardNumber={card.cardNumber}
-                  firstName= {card.firstName}
-                  lastName={card.lastName}
+                  firstName={randomUser.firstName}
+                  lastName={randomUser.lastName}
                   validMonth={card.validMonth}
                   validYear={card.validYear}
-                  cvc={card.cvc}      
+                  cvc={card.cvc}
                   vendor={card.vendor}
-              />
-                </div>
-                <button onClick={() => dispatch(deleteCard(card.id))}>
-                  Delete card
-                </button>
+                />
+              </div>
+              <button onClick={() => dispatch(deleteCard(card.id))}>
+                Delete card
+              </button>
             </div>
           );
         })}
