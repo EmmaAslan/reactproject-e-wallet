@@ -3,7 +3,7 @@ import walletSlice from "./slices/walletSlice";
 
 const store = configureStore({
   reducer: {
-    walletList: walletSlice, //här hamnar våra reducers
+    walletList: walletSlice
   },
 });
 

@@ -1,4 +1,3 @@
-
 import AddNewCard from "../components/AddNewCard";
 
 const AddCard = () => {
