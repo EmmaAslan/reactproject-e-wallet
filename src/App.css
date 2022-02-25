@@ -45,7 +45,13 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(5, 1fr);
-  background-image: linear-gradient(rgb(109, 101, 226), rgb(64, 60, 121));
+  /* background-image: linear-gradient(rgb(109, 101, 226), rgb(64, 60, 121)); */
+  background-image: url("logos/bakgrund.png");
+  background-position: left;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: rgb(112, 87, 252);
+  background-blend-mode:multiply;
   margin: auto;
   width: 360px;
   height: 190px;
@@ -147,4 +153,8 @@
   background-color: transparent;
   font-size: larger;
   padding: 10px;
+}
+
+.hideStartButton {
+  display: none;
 }

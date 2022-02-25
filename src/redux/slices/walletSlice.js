@@ -14,7 +14,7 @@ const walletSlice = createSlice({
   initialState: {
     randomUser: {
       firstName: "",
-      lastName: "",
+      lastName: ""
     },
     listOfCards: [
       {
@@ -22,7 +22,7 @@ const walletSlice = createSlice({
         cardNumber: "4578 7854 4522 1336",
         randomUser: {
           firstName: "",
-          lastName: "",
+          lastName: ""
         },
         validMonth: "07",
         validYear: "27",
@@ -50,13 +50,21 @@ const walletSlice = createSlice({
       return { ...state, listOfCards: filteredCards };
     },
   },
+  
   extraReducers: {
     [getRandomUser.fulfilled]: (state, { payload }) => {
       state.randomUser.firstName = payload.results[0].name.first.toUpperCase();
-      state.listOfCards[0].randomUser.firstName =
-        payload.results[0].name.first.toUpperCase();
+      state.listOfCards[0].randomUser.firstName = payload.results[0].name.first.toUpperCase();
+      state.randomUser.lastName = payload.results[0].name.last.toUpperCase();
+      state.listOfCards[0].randomUser.lastName = payload.results[0].name.last.toUpperCase();
       state.status = null;
     },
+    [getRandomUser.pending]: (state) => {
+      state.status = "Fetching in progress.. Please wait!"
+    },
+    [getRandomUser.rejected]: (state) => {
+      state.status = "Failed to fetch user."
+    }
   },
 });
 

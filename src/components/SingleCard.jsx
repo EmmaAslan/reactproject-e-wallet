@@ -5,7 +5,6 @@ import LElogo from "../logos/LElogo.png";
 import { useSelector } from "react-redux";
 
 const SingleCard = (props) => {
-
   const { randomUser } = useSelector((state) => state.walletList); 
 
   return (

@@ -7,19 +7,19 @@ import NumberFormat from "react-number-format";
 
 const AddNewCard = () => {
   const dispatch = useDispatch();
-
-  const { listOfCards, randomUser } = useSelector((state) => state.walletList);
   const [cardNumber, setCardNumber] = useState("xxxx xxxx xxxx xxxx");
-  //const [firstName, setFirstName] = useState("Name");
-  //const [lastName, setLastName] = useState("Lastname");
   const [validMonth, setValidMonth] = useState("xx");
   const [validYear, setValidYear] = useState("xx");
   const [cvc, setCvc] = useState("xxx");
   const [vendor, setVendor] = useState("");
   const [value, setValue] = useState("default");
 
+  const { listOfCards, randomUser } = useSelector((state) => state.walletList);
+
+  
   const handleAddCard = () => {
-    if (listOfCards.length <= 3)
+    // if (cardNumber.value === 16){
+      if (listOfCards.length <= 3)
       dispatch(
         addCard({
           cardNumber: cardNumber,
@@ -33,24 +33,26 @@ const AddNewCard = () => {
           id: Date.now(),
           vendor: vendor,
         })
+
       );
     else alert("You already have maximum of 4 cards");
+    // }
+    // else alert("16 digits")
   };
 
   let changeCardNumber = (e) => {
     setCardNumber(e.target.value);
+    // if (e.target.value === 16) {
+    //   setCardNumber(e.target.value);
+    // }
+    //  else alert ("Please enter 16")
 
     /*if(cardNumber < 16){
       setCardNumber(e.target.value);
     }
     else alert ("Must be 16 numbers")*/
   };
-  /* let changeFirstName = (e) => {
-    setFirstName(e.target.value);
-  };
-  let changeLastName = (e) => {
-    setLastName(e.target.value);
-  };*/
+
   let changeValidMonth = (e) => {
     setValidMonth(e.target.value);
   };
@@ -65,15 +67,14 @@ const AddNewCard = () => {
     setVendor(e.target.value);
   };
 
-  //var NumberFormat = require('react-number-format');
 
   return (
     <div>
       <h2>Add a new bank card</h2>
       <SingleCard
         cardNumber={cardNumber}
-        //firstName={firstName}
-        //lastName={lastName}
+        firstName={randomUser.firstName}
+        lastName={randomUser.lastName}
         validMonth={validMonth}
         validYear={validYear}
         cvc={cvc}
@@ -82,15 +83,13 @@ const AddNewCard = () => {
      
       <form>
         <div>
-         
           <NumberFormat 
-          format="#### #### #### ####"
-          name="cardNumber"
-          id="cardNumber"
-          placeholder="Card number"
-          onChange={changeCardNumber}
-          //allowEmptyFormatting={false}
-          required
+            format="#### #### #### ####"
+            name="cardNumber"
+            id="cardNumber"
+            placeholder="Card number"
+            onChange={changeCardNumber}
+            required
           />
 
           <NumberFormat
@@ -107,29 +106,31 @@ const AddNewCard = () => {
             type="text"
             placeholder={randomUser.firstName}
             id="firstName"
-            //onChange={changeFirstName}
+            readOnly
+            disabled
           />
           <input
             type="text"
             placeholder={randomUser.lastName}
             id="lastName"
-            //onChange={changeLastName}
+            readOnly
+            disabled
           />
         </div>
-        {/*fixa max antal siffror (2) + bara siffrorna 1-12*/}
+        {/* bara siffrorna 1-12*/}
         <div>
-          <input
-            type="tel"
-            placeholder="Month"
+          <NumberFormat 
+            format="##"
+            name="validMonth"
             id="validMonth"
+            placeholder="Month"
             onChange={changeValidMonth}
           />
-          {/*fixa max antal siffror (2) + inte tidigare år  */}
-          <input
-            type="tel"
+          {/* inte tidigare år  */}
+          <NumberFormat 
+            format="##"
             name="validYear"
             id="validYear"
-            pattern="xx/xx"
             placeholder="Year"
             onChange={changeValidYear}
           />
@@ -150,7 +151,7 @@ const AddNewCard = () => {
             <option value="Ica">Ica</option>
           </select>
         </div>
-        <Link to="/">
+        <Link to="/home">
           <button onClick={handleAddCard}>Add card</button>
         </Link>
       </form>
