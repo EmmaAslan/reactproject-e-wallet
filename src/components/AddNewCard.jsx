@@ -1,11 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import { addCard } from "../redux/slices/walletSlice";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import SingleCard from "./SingleCard";
-import NumberFormat from "react-number-format";
 
-const AddNewCard = () => {
+const AddNewCard = (props) => {
   const dispatch = useDispatch();
   const [cardNumber, setCardNumber] = useState("xxxx xxxx xxxx xxxx");
   const [validMonth, setValidMonth] = useState("xx");
@@ -14,10 +12,10 @@ const AddNewCard = () => {
   const [vendor, setVendor] = useState("");
   const [value, setValue] = useState("default");
 
-  const { listOfCards, randomUser } = useSelector((state) => state.walletList);
+  const { randomUser } = useSelector((state) => state.walletList);
 
   const handleAddCard = () => {
-      if (listOfCards.length <= 3)
+    props.setNewCard(true);
       dispatch (
         addCard ({
           cardNumber: cardNumber,
@@ -32,8 +30,8 @@ const AddNewCard = () => {
           vendor: vendor,
         })
       );
-    else alert("You have already reached the maximum limit of 4 cards.");
   };
+
 
   let changeCardNumber = (e) => {
     const value = e.target.value.replace(/ /g, "");
@@ -66,6 +64,7 @@ const AddNewCard = () => {
   return (
     <div>
       <h2>Add a new bank card</h2>
+
       <SingleCard
         cardNumber={cardNumber}
         firstName={randomUser.firstName}
@@ -76,14 +75,20 @@ const AddNewCard = () => {
         vendor={vendor}
       />
      
-      <form >
+      <form onSubmit={() => {
+          handleAddCard();
+        }}>           
         <div>
-          {/* <NumberFormat 
-            format="#### #### #### ####"
-            name="cardNumber"
+          {/* <input
+            type="text"
+            ame="cardNumber"
             id="cardNumber"
             placeholder="Card number"
-            onChange={changeCardNumber}
+            onChange={(e) => {
+              setCardNumber(e.target.value);
+            }}
+            pattern="[0-9]{16}"
+            maxLength="16"
             required
           />  */}
 
@@ -93,16 +98,21 @@ const AddNewCard = () => {
             id="cardNumber"
             placeholder="Card Number"
             maxLength="16"
+            pattern="[0-9]{16}"
             onChange={changeCardNumber}
             required
           />
+          
           {/* CVC INPUT */}
-          <NumberFormat
-            format="###"
+          <input
+            type="text"
             name="cvc"
             id="cvc"
             placeholder="CVC"
             onChange={changeCvc}
+            pattern="[0-9]{3}"
+            maxLength="3"
+            required
           />
         </div>
 
@@ -115,6 +125,7 @@ const AddNewCard = () => {
             readOnly
             disabled
           />
+
           {/* LAST NAME INPUT */}
           <input
             type="text"
@@ -124,26 +135,33 @@ const AddNewCard = () => {
             disabled
           />
         </div>
-        {/* bara siffrorna 1-12*/}
+
         <div>
           {/* VALID MONTH INPUT */}
-          <NumberFormat 
-            format="##"
+          <input
+            type="text"
             name="validMonth"
             id="validMonth"
             placeholder="Month"
             onChange={changeValidMonth}
+            pattern="[0-9]{2}"
+            maxLength="2"
+            required
           />
-          {/* inte tidigare år  */}
+          
           {/* VALID YEAR INPUT */}
-          <NumberFormat 
-            format="##"
+          <input
+            type="text"
             name="validYear"
             id="validYear"
             placeholder="Year"
             onChange={changeValidYear}
+            pattern="[0-9]{2}"
+            maxLength="2"
+            required
           />
         </div>
+
         <div>
           {/* DROPDOWN FOR VENDOR */}
           <select
@@ -151,6 +169,7 @@ const AddNewCard = () => {
             id="vendor"
             defaultValue={value}
             onChange={changeVendor}
+            required
           >
             <option value="default" disabled hidden>
               Choose vendor
@@ -161,9 +180,13 @@ const AddNewCard = () => {
             <option value="Ica">Ica</option>
           </select>
         </div>
-        <Link to="/">
+        {/* <Link to="/">
           <button onClick={handleAddCard}>Add card</button>
-        </Link>
+        </Link> */}
+
+        <button type="submit" id="addCardBtn">
+          Add card
+        </button>
       </form>
     </div>
   );

@@ -19,9 +19,9 @@
   border-radius: 10px;
   color: #bbb959;
   text-shadow: #615f56 1px 1px 2px;
-  }
-  
-  /* CSS för kort - VISA */
+}
+
+/* CSS för kort - VISA */
 .cardVisa {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -40,7 +40,7 @@
   text-shadow: #363633 1px 1px 2px;
 }
 
- /* CSS för kort - LE */
+/* CSS för kort - LE */
 .cardLE {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -51,7 +51,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-color: rgb(112, 87, 252);
-  background-blend-mode:multiply;
+  background-blend-mode: multiply;
   margin: auto;
   width: 360px;
   height: 190px;
@@ -141,7 +141,6 @@
   width: 100%;
   letter-spacing: 6px;
   font-size: 23px;
-  
 }
 
 .cardNumbers p {
@@ -149,15 +148,15 @@
   text-align: middle;
 }
 
-.name { 
-  grid-area: 5 / 1 / 6 / 4; 
+.name {
+  grid-area: 5 / 1 / 6 / 4;
   text-align: left;
   padding-left: 18px;
   font-size: 18px;
 }
 .name.p {
   margin: 0;
-  margin-top:12px;
+  margin-top: 12px;
 }
 
 .date { 
@@ -190,5 +189,76 @@
   border: 0;
   background-color: transparent;
   font-size: larger;
+  padding: 10px;
+}
+
+/* Buttons (not delete button) */
+#startBtn {
+  border-radius: 15px;
+  border: none;
+  transition-duration: 0.4s;
+  width: 150px;
+  font-size: medium;
+  margin-top: 20px;
+}
+#startBtn:hover {
+  background-color: #333;
+  color: white;
+}
+
+#addCardBtn {
+  border-radius: 15px;
+  border: none;
+  transition-duration: 0.4s;
+  width: 150px;
+  font-size: medium;
+  margin-top: 10px;
+}
+#addCardBtn:hover {
+  background-color: #333;
+  color: white;
+}
+
+#addNewCardBtn {
+  border-radius: 15px;
+  border: none;
+  transition-duration: 0.4s;
+  width: 150px;
+  font-size: medium;
+}
+#addNewCardBtn:hover {
+  background-color: #333;
+  color: white;
+}
+#walletBtn {
+  border-radius: 15px;
+  border: none;
+  transition-duration: 0.4s;
+  width: 150px;
+  font-size: medium;
+  margin-top: 10px;
+}
+#walletBtn:hover {
+  background-color: #333;
+  color: white;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
+
+* {
+  font-family: "Quicksand";
+  color: #333;
+}
+
+#header {
+  text-align: center;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+#footer {
+  text-align: center;
+  background-color: white;
+  border-top: 1px solid #f2f2f2;
+  margin-top: 20px;
   padding: 10px;
 }
