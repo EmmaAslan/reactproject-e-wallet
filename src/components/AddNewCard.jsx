@@ -16,12 +16,10 @@ const AddNewCard = () => {
 
   const { listOfCards, randomUser } = useSelector((state) => state.walletList);
 
-  
   const handleAddCard = () => {
-    // if (cardNumber.value === 16){
       if (listOfCards.length <= 3)
-      dispatch(
-        addCard({
+      dispatch (
+        addCard ({
           cardNumber: cardNumber,
           randomUser: {
             firstName: randomUser.firstName,
@@ -33,24 +31,22 @@ const AddNewCard = () => {
           id: Date.now(),
           vendor: vendor,
         })
-
       );
-    else alert("You already have maximum of 4 cards");
-    // }
-    // else alert("16 digits")
+    else alert("You have already reached the maximum limit of 4 cards.");
   };
 
   let changeCardNumber = (e) => {
-    setCardNumber(e.target.value);
-    // if (e.target.value === 16) {
-    //   setCardNumber(e.target.value);
-    // }
-    //  else alert ("Please enter 16")
-
-    /*if(cardNumber < 16){
-      setCardNumber(e.target.value);
+    const value = e.target.value.replace(/ /g, "");
+    let inputNums = value.replace(/\D/g, "");
+    if (inputNums.length > 16) {
+      inputNums = inputNums.substr(0, 16);
     }
-    else alert ("Must be 16 numbers")*/
+    const spaces = inputNums.match(/.{1,4}/g);
+    let insertSpaces = "";
+    if (spaces) {
+      insertSpaces = spaces.join(" ");
+    }
+    setCardNumber(insertSpaces);
   };
 
   let changeValidMonth = (e) => {
@@ -67,7 +63,6 @@ const AddNewCard = () => {
     setVendor(e.target.value);
   };
 
-
   return (
     <div>
       <h2>Add a new bank card</h2>
@@ -81,17 +76,27 @@ const AddNewCard = () => {
         vendor={vendor}
       />
      
-      <form>
+      <form >
         <div>
-          <NumberFormat 
+          {/* <NumberFormat 
             format="#### #### #### ####"
             name="cardNumber"
             id="cardNumber"
             placeholder="Card number"
             onChange={changeCardNumber}
             required
-          />
+          />  */}
 
+          {/* CARD NUMBER INPUT */}
+          <input 
+            name="cardNumber"
+            id="cardNumber"
+            placeholder="Card Number"
+            maxLength="16"
+            onChange={changeCardNumber}
+            required
+          />
+          {/* CVC INPUT */}
           <NumberFormat
             format="###"
             name="cvc"
@@ -102,6 +107,7 @@ const AddNewCard = () => {
         </div>
 
         <div>
+          {/* FIRST NAME INPUT */}
           <input
             type="text"
             placeholder={randomUser.firstName}
@@ -109,6 +115,7 @@ const AddNewCard = () => {
             readOnly
             disabled
           />
+          {/* LAST NAME INPUT */}
           <input
             type="text"
             placeholder={randomUser.lastName}
@@ -119,6 +126,7 @@ const AddNewCard = () => {
         </div>
         {/* bara siffrorna 1-12*/}
         <div>
+          {/* VALID MONTH INPUT */}
           <NumberFormat 
             format="##"
             name="validMonth"
@@ -127,6 +135,7 @@ const AddNewCard = () => {
             onChange={changeValidMonth}
           />
           {/* inte tidigare år  */}
+          {/* VALID YEAR INPUT */}
           <NumberFormat 
             format="##"
             name="validYear"
@@ -136,6 +145,7 @@ const AddNewCard = () => {
           />
         </div>
         <div>
+          {/* DROPDOWN FOR VENDOR */}
           <select
             name="vendor"
             id="vendor"
@@ -151,7 +161,7 @@ const AddNewCard = () => {
             <option value="Ica">Ica</option>
           </select>
         </div>
-        <Link to="/home">
+        <Link to="/">
           <button onClick={handleAddCard}>Add card</button>
         </Link>
       </form>

@@ -3,11 +3,22 @@ import { Link } from "react-router-dom";
 import { changeActive, deleteCard } from "../redux/slices/walletSlice";
 import SingleCard from "./SingleCard"
 import {BsTrashFill} from "react-icons/bs"
+import { useState } from "react";
 
 const Wallet = () => {
   const dispatch = useDispatch();
   const { listOfCards, randomUser } = useSelector((state) => state.walletList);
   console.log(listOfCards);
+
+  // const [disableBtn, setDisableBtn] = useState(false)
+
+  // const testButton = () => {
+  //   if (listOfCards.length === 4) {
+  //     setDisableBtn(true)
+  //   } else {
+  //     setDisableBtn(false)
+  //   }
+  // }
 
   return (
     <div>
@@ -56,9 +67,16 @@ const Wallet = () => {
           );
         })}
       </div>
-      <Link to={{ pathname: "/addcard" }}>
+      {listOfCards.length < 4 ? (
+        <Link to={{ pathname: "/addcard" }}>
         <button>Add new card</button>
       </Link>
+      ) : <div>
+            <button disabled >Add new card</button>
+            <br />
+            <small style={{fontStyle:"italic"}}>You can only have 4 cards at a time, please remove one if you wish to create a new one!</small>
+        </div>}
+      
     </div>
   );
 };
