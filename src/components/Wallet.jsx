@@ -56,13 +56,15 @@ const Wallet = () => {
       </div>
       {listOfCards.length < 4 ? (
         <Link to={{ pathname: "/addcard" }}>
-        <button id="addNewCardBtn">Add new card</button>
+        <button className="activeBtn">Add new card</button>
       </Link>
-      ) : <div>
-            <button disabled id="addNewCardBtn" >Add new card</button>
+      ) : 
+      <div>
+            <button disabled className="disabledBtn">Add new card</button>
             <br />
             <small style={{fontStyle:"italic"}}>You can only have 4 cards at a time, please remove one if you wish to create a new one!</small>
-        </div>}
+        </div>
+      }
     </div>
   );
 };

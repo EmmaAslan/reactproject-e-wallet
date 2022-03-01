@@ -1,13 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
+
+* {
+  font-family: "Quicksand";
+  color: #333;
+}
+
 .App {
   text-align: center;
 }
 
-/* CSS för kort - default*/
+/* Default card styling */
 .card {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(5, 1fr);
-  /* background-image: linear-gradient(rgb(92, 144, 212), rgb(76, 101, 146)); */
   background-image: url("logos/patterns.png");
   background-position: center;
   background-size: cover;
@@ -21,12 +27,11 @@
   text-shadow: #615f56 1px 1px 2px;
 }
 
-/* CSS för kort - VISA */
+/* VISA styling */
 .cardVisa {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(5, 1fr);
-  /* background-image: linear-gradient(rgb(255, 51, 112), rgb(183, 0, 255));  */
   background-image: url("logos/flowers.png");
   background-position: left;
   background-size: 50%;
@@ -40,12 +45,11 @@
   text-shadow: #363633 1px 1px 2px;
 }
 
-/* CSS för kort - LE */
+/* LE styling */
 .cardLE {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(5, 1fr);
-  /* background-image: linear-gradient(rgb(109, 101, 226), rgb(64, 60, 121)); */
   background-image: url("logos/bakgrund.png");
   background-position: left;
   background-size: cover;
@@ -60,12 +64,11 @@
   text-shadow: #615f56 1px 1px 2px;
 }
 
-/* CSS för kort - Swedbank */
+/* Swedbank styling */
 .cardSwedbank {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(5, 1fr);
-  /* background-image: linear-gradient(rgb(255, 209, 123), rgb(255, 167, 52)); */
   background-image: url("logos/swedbanktree.png");
   background-color: rgb(255, 181, 21);
   background-position: center;
@@ -79,12 +82,11 @@
   text-shadow: #615f56 1px 1px 2px;
 }
 
-/* CSS för kort - Ica */
+/* Ica styling */
 .cardIca {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(5, 1fr);
-  /* background-image: linear-gradient(rgb(247, 144, 144), rgb(167, 82, 82)); */
   background-image: url("logos/starsbackground.png");
   background-color: rgb(247, 144, 144);
   background-position: center;
@@ -106,7 +108,6 @@
 .logo > img {
   width: 100%;
   padding-top: 10px;
-  /* padding-right: 10px; */
 }
 
 .cardIca > .logo{
@@ -116,8 +117,6 @@
 .cardVisa > .logo{
   width: 80%;
   padding-left: 30px;
-  /* text-align: end; */
-  /* float: right; */
 }
 
 .cardLE > .logo {
@@ -193,7 +192,7 @@
 }
 
 /* Buttons (not delete button) */
-#startBtn {
+.activeBtn {
   border-radius: 15px;
   border: none;
   transition-duration: 0.4s;
@@ -201,53 +200,19 @@
   font-size: medium;
   margin-top: 20px;
 }
-#startBtn:hover {
+
+.activeBtn:hover{
   background-color: #333;
   color: white;
 }
 
-#addCardBtn {
+.disabledBtn {
   border-radius: 15px;
   border: none;
   transition-duration: 0.4s;
   width: 150px;
   font-size: medium;
   margin-top: 10px;
-}
-#addCardBtn:hover {
-  background-color: #333;
-  color: white;
-}
-
-#addNewCardBtn {
-  border-radius: 15px;
-  border: none;
-  transition-duration: 0.4s;
-  width: 150px;
-  font-size: medium;
-}
-#addNewCardBtn:hover {
-  background-color: #333;
-  color: white;
-}
-#walletBtn {
-  border-radius: 15px;
-  border: none;
-  transition-duration: 0.4s;
-  width: 150px;
-  font-size: medium;
-  margin-top: 10px;
-}
-#walletBtn:hover {
-  background-color: #333;
-  color: white;
-}
-
-@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
-
-* {
-  font-family: "Quicksand";
-  color: #333;
 }
 
 #header {

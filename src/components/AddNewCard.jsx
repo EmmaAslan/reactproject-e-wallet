@@ -11,7 +11,6 @@ const AddNewCard = (props) => {
   const [cvc, setCvc] = useState("xxx");
   const [vendor, setVendor] = useState("");
   const [value, setValue] = useState("default");
-
   const { randomUser } = useSelector((state) => state.walletList);
 
   const handleAddCard = () => {
@@ -31,7 +30,6 @@ const AddNewCard = (props) => {
         })
       );
   };
-
 
   let changeCardNumber = (e) => {
     const value = e.target.value.replace(/ /g, "");
@@ -79,19 +77,6 @@ const AddNewCard = (props) => {
           handleAddCard();
         }}>           
         <div>
-          {/* <input
-            type="text"
-            ame="cardNumber"
-            id="cardNumber"
-            placeholder="Card number"
-            onChange={(e) => {
-              setCardNumber(e.target.value);
-            }}
-            pattern="[0-9]{16}"
-            maxLength="16"
-            required
-          />  */}
-
           {/* CARD NUMBER INPUT */}
           <input 
             name="cardNumber"
@@ -102,7 +87,7 @@ const AddNewCard = (props) => {
             onChange={changeCardNumber}
             required
           />
-          
+
           {/* CVC INPUT */}
           <input
             type="text"
@@ -180,13 +165,34 @@ const AddNewCard = (props) => {
             <option value="Ica">Ica</option>
           </select>
         </div>
-        {/* <Link to="/">
-          <button onClick={handleAddCard}>Add card</button>
-        </Link> */}
-
-        <button type="submit" id="addCardBtn">
+        
+        {vendor === "Visa" ? (
+            <button type="submit" className="activeBtn">
+            Add card
+          </button>
+          ) : vendor === "Swedbank" ? (
+            <button type="submit" className="activeBtn">
           Add card
         </button>
+          ) : vendor === "LE Bank" ? (
+            <button type="submit" className="activeBtn">
+          Add card
+        </button>
+          ) : vendor === "Ica" ? (
+            <button type="submit" className="activeBtn">
+          Add card
+        </button>
+          ) : 
+          
+          <div>
+            <button type="submit" disabled className="disabledBtn">
+              Add card
+            </button>
+            <br />
+            <small style={{fontStyle:"italic", fontSize:"12px"}}>Please choose a vendor before adding to wallet.</small>
+        </div>
+        }
+        
       </form>
     </div>
   );

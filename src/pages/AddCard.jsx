@@ -8,13 +8,12 @@ const AddCard = () => {
   return (
     <div>
       {newCard ? (
-        <h1>Your card has been added to your wallet!</h1>
+        <h1>Wiho, you have a new card. Let's start shopping! :)</h1>
       ) : (
         <AddNewCard setNewCard={setNewCard} />
       )}
-      <Link to="/home">
-        {" "}
-        <button id="walletBtn">Go to wallet</button>
+      <Link to="/">
+        <button className="activeBtn">Return to wallet</button>
       </Link>
     </div>
   );
