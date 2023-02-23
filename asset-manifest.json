@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/reactproject-e-wallet/static/css/main.442ee58e.css",
+    "main.js": "/reactproject-e-wallet/static/js/main.c03dc10e.js",
+    "static/media/patterns.png": "/reactproject-e-wallet/static/media/patterns.7491d0456719f539f973.png",
+    "static/media/flowers.png": "/reactproject-e-wallet/static/media/flowers.acb5c4a309faeeec9c0a.png",
+    "static/media/starsbackground.png": "/reactproject-e-wallet/static/media/starsbackground.e3f1fa69ab27daaaf0e4.png",
+    "static/media/bakgrund.png": "/reactproject-e-wallet/static/media/bakgrund.17340297066a07889927.png",
+    "static/media/swedbanktree.png": "/reactproject-e-wallet/static/media/swedbanktree.e09917f67a54bc3ab6e1.png",
+    "static/media/chip.png": "/reactproject-e-wallet/static/media/chip.88f4ed3ada95425d6c53.png",
+    "static/media/visalogo.png": "/reactproject-e-wallet/static/media/visalogo.a013476a5856a03f180e.png",
+    "static/media/icalogo.png": "/reactproject-e-wallet/static/media/icalogo.9e661be98651a83f6a4d.png",
+    "static/media/LElogo.png": "/reactproject-e-wallet/static/media/LElogo.b2ecc5034902481d0f78.png",
+    "static/media/mastercard.png": "/reactproject-e-wallet/static/media/mastercard.271504993d78e2708f6d.png",
+    "static/media/swedbanklogo.png": "/reactproject-e-wallet/static/media/swedbanklogo.42b865c0b803731cdac1.png",
+    "index.html": "/reactproject-e-wallet/index.html",
+    "main.442ee58e.css.map": "/reactproject-e-wallet/static/css/main.442ee58e.css.map",
+    "main.c03dc10e.js.map": "/reactproject-e-wallet/static/js/main.c03dc10e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.442ee58e.css",
+    "static/js/main.c03dc10e.js"
+  ]
+}
